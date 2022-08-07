@@ -38,17 +38,17 @@ public class MainServlet extends HttpServlet {
     }
 
     private void actionApiPosts(String path, String method, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if(path.matches("/api/posts/\\d+")) {
+        if (path.matches("/api/posts/\\d+")) {
             final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             if (method.equals("GET")) {
                 controller.getById(id, resp);
-            } else if (method.equals("DELETE")){
+            } else if (method.equals("DELETE")) {
                 controller.removeById(id, resp);
             }
         } else {
             if (method.equals("GET")) {
                 controller.all(resp);
-            } else if (method.equals("POST")){
+            } else if (method.equals("POST")) {
                 controller.save(req.getReader(), resp);
             }
         }
