@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 // Stub
 public class PostRepository {
-    private static int currentId = 1;
+    private static AtomicInteger  currentId = new AtomicInteger(1);
     private static ConcurrentMap<Long, Post> dataBase = new ConcurrentHashMap<>();
 
     public List<Post> all() {
@@ -29,7 +30,7 @@ public class PostRepository {
         long id = post.getId();
         Post currentPost = dataBase.get(id);
         if (id == 0) {
-            long newId = currentId++;
+            long newId = currentId.getAndIncrement();
             Post newPost = new Post(newId, post.getContent());
             dataBase.put(newId, newPost);
             return newPost;
