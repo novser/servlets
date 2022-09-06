@@ -8,10 +8,11 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 // Stub
 public class PostRepository {
-    private static AtomicInteger currentId = new AtomicInteger(1);
+    private static AtomicLong currentId = new AtomicLong(1);
     private static ConcurrentMap<Long, Post> dataBase = new ConcurrentHashMap<>();
 
     public List<Post> all() {
